@@ -1,3 +1,3 @@
 # GameOfLife
 
-Hi
+I WILL DOMINATE
