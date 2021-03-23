@@ -16,5 +16,12 @@ namespace GameOfLife
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Spielfeld feld = new Spielfeld();
+            String test = feld.EvaluateNextGeneration();
+            MessageBox.Show(test);
+        }
     }
 }
