@@ -11,25 +11,22 @@ using System.Windows.Forms;
 namespace GameOfLife
 {
     public partial class EntryGUI : Form
-    {
+    {  
         public EntryGUI()
         {
             InitializeComponent();
         }
 
-        private void EntryGUI_Load(object sender, EventArgs e)
+        private void btnOk_Click(object sender, EventArgs e)
         {
-
+            int generations = Int32.Parse(numGenerations.Value.ToString());
+            getGenerations(generations);
+            Application.Run(new GameGUI());
         }
 
-        private void lblInstructions_Click(object sender, EventArgs e)
+        private int getGenerations(int g)
         {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
+            return g;
         }
     }
 }

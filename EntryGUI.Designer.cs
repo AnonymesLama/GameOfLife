@@ -60,7 +60,6 @@
             this.lblInstructions.Size = new System.Drawing.Size(224, 17);
             this.lblInstructions.TabIndex = 1;
             this.lblInstructions.Text = "Bitte gewünschte Werte eingeben.";
-            this.lblInstructions.Click += new System.EventHandler(this.lblInstructions_Click);
             // 
             // lblSize
             // 
@@ -70,7 +69,6 @@
             this.lblSize.Size = new System.Drawing.Size(90, 17);
             this.lblSize.TabIndex = 2;
             this.lblSize.Text = "Feldgroesse:";
-            this.lblSize.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblGenerations
             // 
@@ -95,12 +93,12 @@
             // 
             this.numX.Location = new System.Drawing.Point(150, 141);
             this.numX.Maximum = new decimal(new int[] {
-            20,
+            16,
             0,
             0,
             0});
             this.numX.Minimum = new decimal(new int[] {
-            1,
+            16,
             0,
             0,
             0});
@@ -108,7 +106,7 @@
             this.numX.Size = new System.Drawing.Size(46, 22);
             this.numX.TabIndex = 5;
             this.numX.Value = new decimal(new int[] {
-            1,
+            16,
             0,
             0,
             0});
@@ -134,12 +132,12 @@
             // 
             this.numY.Location = new System.Drawing.Point(273, 141);
             this.numY.Maximum = new decimal(new int[] {
-            20,
+            9,
             0,
             0,
             0});
             this.numY.Minimum = new decimal(new int[] {
-            1,
+            9,
             0,
             0,
             0});
@@ -147,7 +145,7 @@
             this.numY.Size = new System.Drawing.Size(46, 22);
             this.numY.TabIndex = 7;
             this.numY.Value = new decimal(new int[] {
-            1,
+            9,
             0,
             0,
             0});
@@ -180,7 +178,6 @@
             this.MaximizeBox = false;
             this.Name = "EntryGUI";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.EntryGUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).EndInit();

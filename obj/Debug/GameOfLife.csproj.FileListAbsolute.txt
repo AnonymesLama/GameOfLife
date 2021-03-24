@@ -1,0 +1,11 @@
+C:\Users\Duscha\source\repos\GameOfLife\bin\Debug\GameOfLife.exe.config
+C:\Users\Duscha\source\repos\GameOfLife\bin\Debug\GameOfLife.exe
+C:\Users\Duscha\source\repos\GameOfLife\bin\Debug\GameOfLife.pdb
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.csprojAssemblyReference.cache
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.GameGUI.resources
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.EntryGUI.resources
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.Properties.Resources.resources
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.csproj.GenerateResource.cache
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.csproj.CoreCompileInputs.cache
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.exe
+C:\Users\Duscha\source\repos\GameOfLife\obj\Debug\GameOfLife.pdb
