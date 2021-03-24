@@ -20,8 +20,12 @@ namespace GameOfLife
         private void Form1_Load(object sender, EventArgs e)
         {
             Spielfeld feld = new Spielfeld();
-            String test = feld.EvaluateNextGeneration();
-            MessageBox.Show(test);
+            int generationen = 12;
+            for (int i = generationen; i > 0; i--)
+            {
+                String test = feld.EvaluateNextGeneration();
+                MessageBox.Show(test + " " +i);
+            }
         }
     }
 }

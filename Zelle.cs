@@ -6,13 +6,34 @@ using System.Threading.Tasks;
 
 namespace GameOfLife
 {
-    class Zelle
+    public struct Position
     {
-        private Position position;
+        public int Z;
+        public int S;
+
+        public Position(int zeile, int spalte)
+        {
+            this.Z = zeile;
+            this.S = spalte;
+        }
+    }
+
+
+    public class Zelle
+    {
+        private Position Koordinate = new Position();
         private bool status;
         private bool nextStatus;
 
-        public Position Position { get; set; }
+        //public Position Koordinate { get; set; }
+        public int GetZeile ()
+        {
+            return this.Koordinate.Z;
+        }
+        public int GetSpalte()
+        {
+            return this.Koordinate.S;
+        }
         public bool Status
         {
             get { return this.status; }
@@ -21,6 +42,7 @@ namespace GameOfLife
         public bool NextStatus
         {
             get { return this.nextStatus; }
+            set { this.nextStatus = value; }
         }
 
         //setter für status. nur bei initialisierung nutzen
@@ -32,24 +54,18 @@ namespace GameOfLife
         public Zelle(Position p)
         {
             this.status = false;
-            this.Position = p;
+            this.Koordinate = p;
         }
 
-
-    }
-
-    class Position
-    {
-        private int zeile;
-        private int spalte;
-        public int Zeile { get; set; }
-        public int Spalte { get; set; }
-
-
-        public Position(int z, int s)
+        public Zelle(int zeile, int spalte)
         {
-            this.Zeile = z;
-            this.Spalte = s;
+            this.status = false;
+            this.Koordinate.Z = zeile;
+            this.Koordinate.S = spalte;
         }
+
+
     }
+
+
 }

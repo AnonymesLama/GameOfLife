@@ -9,7 +9,7 @@ namespace GameOfLife
     class Spielfeld
     {
         public static int generationenAnzahl;
-        private bool change = true;
+        private bool change;
         private int cellCount;
         //private int feldGroesse;
         private Zelle[,] kolonie;
@@ -17,10 +17,12 @@ namespace GameOfLife
 
         //nimmt Zellen an, setze jeweils nextstatus gemäß regeln
         // speichert output in nextkolonie
-        // 
+
         public String EvaluateNextGeneration()
         {
             string ausgabe = "";
+            change = true;
+
             //nextkolonie ist copy of kolonie
 
             while (change)
@@ -29,15 +31,38 @@ namespace GameOfLife
                 {
                     for (int j = 2; j < 9; j++)
                     {
-                        if (kolonie[i,j].Status) { 
-                            Zelle currentZelle = kolonie[i, j];
-                            Position [] nachbarn = BestimmeNachbarn(kolonie[i, j]);
-                            foreach (Position x in nachbarn)
+                        Position[] nachbarn = BestimmeNachbarn(kolonie[i, j]);
+                        int lebendig = 0;
+                        foreach (Position x in nachbarn)
+                        {
+                            if ((kolonie[i, j].Position == x) && kolonie[i, j].Status)
                             {
-                                ausgabe += x.Zeile;
-                                ausgabe += ",";
-                                ausgabe += x.Spalte;
-                                ausgabe += '\n';
+                                lebendig++;
+                            }
+                            //ausgabe += x.Zeile;
+                            //ausgabe += ",";
+                            //ausgabe += x.Spalte;
+                            //ausgabe += '\n';
+                        }
+
+                        if (kolonie[i,j].Status) {                          
+                            if (lebendig < 2)
+                            {
+                                kolonie[i, j].NextStatus = false;
+                            }
+                            if (lebendig <= 3 && lebendig >=2)
+                            {
+                                kolonie[i, j].NextStatus = true;
+                            }
+                            if (lebendig > 3)
+                            {
+                                kolonie[i, j].NextStatus = false;
+                            }
+                        } else if (!kolonie[i,j].Status)
+                        {
+                            if (lebendig == 3)
+                            {
+                                kolonie[i, j].NextStatus = true;
                             }
                         }
 
@@ -57,15 +82,17 @@ namespace GameOfLife
         public Position [] BestimmeNachbarn (Zelle zelle)
         {
             Position[] nachbarn = new Position[8];
+            int zeile = zelle.GetZeile();
+            int spalte = zelle.GetSpalte();
 
-            nachbarn[0] = new Position(zelle.Position.Zeile - 1, zelle.Position.Spalte - 1);
-            nachbarn[1] = new Position(zelle.Position.Zeile - 1, zelle.Position.Spalte    );
-            nachbarn[2] = new Position(zelle.Position.Zeile - 1, zelle.Position.Spalte + 1);
-            nachbarn[3] = new Position(zelle.Position.Zeile    , zelle.Position.Spalte - 1);
-            nachbarn[4] = new Position(zelle.Position.Zeile    , zelle.Position.Spalte + 1);
-            nachbarn[5] = new Position(zelle.Position.Zeile + 1, zelle.Position.Spalte - 1);
-            nachbarn[6] = new Position(zelle.Position.Zeile + 1, zelle.Position.Spalte    );
-            nachbarn[7] = new Position(zelle.Position.Zeile + 1, zelle.Position.Spalte + 1);
+            nachbarn[0] = new Position(zeile - 1, spalte - 1);
+            nachbarn[1] = new Position(zeile - 1, spalte    );
+            nachbarn[2] = new Position(zeile - 1, spalte + 1);
+            nachbarn[3] = new Position(zeile    , spalte - 1);
+            nachbarn[4] = new Position(zeile    , spalte + 1);
+            nachbarn[5] = new Position(zeile + 1, spalte - 1);
+            nachbarn[6] = new Position(zeile + 1, spalte    );
+            nachbarn[7] = new Position(zeile + 1, spalte + 1);
 
             return nachbarn;
         }
@@ -81,12 +108,11 @@ namespace GameOfLife
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    //HIER TODO 
-                    kolonie[i, j] = new Zelle(new Position(i, j));
+                    Position Koordinate = Position(i, j);
+                    kolonie[i, j] = new Zelle(i, j);
                 }
             }
             kolonie[2, 2].StarterKolonie();
-
             kolonie[6, 6].StarterKolonie();
         }
 
