@@ -19,13 +19,15 @@ namespace GameOfLife
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Spielfeld feld = new Spielfeld();
-            int generationen = 12;
+            Spielfeld feld = new Spielfeld(5,5); //5,5 to delete, kommt dann von userinput
+            int generationen = 12; //to delete, kommt dann von userinput
             for (int i = generationen; i > 0; i--)
             {
-                String test = feld.EvaluateNextGeneration();
-                MessageBox.Show(test + " " +i);
+                Spielfeld.angabe = "";
+                feld.Simulate(true);  //abbruchbedingung: Simulate(false) -> aktuell würden mgl. changes noch übernommen
+                MessageBox.Show(Spielfeld.angabe);
             }
+            feld.Simulate(false);
         }
     }
 }

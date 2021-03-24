@@ -9,46 +9,43 @@ namespace GameOfLife
     class Spielfeld
     {
         public static int generationenAnzahl;
-        private bool change;
-        private int cellCount;
+        //private bool change;
+        //private int cellCount;
+        private int breite;
+        private int laenge; 
         //private int feldGroesse;
         private Zelle[,] kolonie;
-        private Zelle [,] nextKolonie;
+        //private Zelle [,] nextKolonie;
+        public static String angabe;
 
-        //nimmt Zellen an, setze jeweils nextstatus gemäß regeln
-        // speichert output in nextkolonie
 
-        public String EvaluateNextGeneration()
+        public void Simulate(bool change)
         {
-            string ausgabe = "";
-            change = true;
-
-            //nextkolonie ist copy of kolonie
+            //change = true;
 
             while (change)
             {
-                for (int i = 2; i< 16; i++)
+                int changecounter = 0;
+                for (int i = 1; i < breite+1; i++)
                 {
-                    for (int j = 2; j < 9; j++)
+                    for (int j = 1; j < laenge+1 ; j++)
                     {
                         Position[] nachbarn = BestimmeNachbarn(kolonie[i, j]);
                         int lebendig = 0;
                         foreach (Position x in nachbarn)
                         {
-                            if ((kolonie[i, j].Position == x) && kolonie[i, j].Status)
+                            if (kolonie[x.S, x.Z].Status)
                             {
                                 lebendig++;
                             }
-                            //ausgabe += x.Zeile;
-                            //ausgabe += ",";
-                            //ausgabe += x.Spalte;
-                            //ausgabe += '\n';
                         }
 
                         if (kolonie[i,j].Status) {                          
                             if (lebendig < 2)
                             {
                                 kolonie[i, j].NextStatus = false;
+                                changecounter++;
+                                angabe += " änderung einsam ("+changecounter+")|";
                             }
                             if (lebendig <= 3 && lebendig >=2)
                             {
@@ -57,26 +54,43 @@ namespace GameOfLife
                             if (lebendig > 3)
                             {
                                 kolonie[i, j].NextStatus = false;
+                                changecounter++;
+                                angabe += " änderung suffocate (" + changecounter + ")|";
                             }
-                        } else if (!kolonie[i,j].Status)
+                        }
+                        if (!kolonie[i,j].Status)
                         {
                             if (lebendig == 3)
                             {
                                 kolonie[i, j].NextStatus = true;
+                                changecounter++;
+                                angabe += " änderung newborn (" + changecounter + ")|";
                             }
                         }
-
-                        ausgabe += "i = "+ i+"; j = "+j;
-                        //je nach anzahl, change state in nextkolonie
-                        //check ob change
-                        //if regeln erfüllt:
-                        //kolonie[i,j].Evolve();
-                        change = false;
                     }
                 }
-                
+                if (changecounter == 0)
+                {
+                    //change = false;  //das hier funktioniert noch nicht...
+                    SetChange();
+                    return;
+                }
+                angabe += " ---" +changecounter+" änderungen vorgenommen---";
+                generationenAnzahl++;
             }
-            return ausgabe;
+            SetChange();
+            angabe += "raus aus while schleife - keine änderungen mehr";
+        }
+
+        public void SetChange()
+        {
+            for (int i = breite; i >0; i--)
+            {
+                for (int j = laenge; j >0; j--)
+                {
+                    kolonie[i, j].Evolve();                    
+                }
+            }
         }
 
         public Position [] BestimmeNachbarn (Zelle zelle)
@@ -97,28 +111,42 @@ namespace GameOfLife
             return nachbarn;
         }
 
+        //public Spielfeld ()
+        //{
+        //    //statisch 16 x 9
+        //    kolonie = new Zelle[16, 9];
+        //    for (int i = 0; i < 16; i++)
+        //    {
+        //        for (int j = 0; j < 9; j++)
+        //        {
+        //            kolonie[i, j] = new Zelle(i, j);
+        //        }
+        //    }
+        //    kolonie[2, 3].StarterKolonie();
+        //    kolonie[3, 2].StarterKolonie();
+        //    kolonie[3, 3].StarterKolonie();
+        //} //statisch
 
-        public Spielfeld ()
+        public Spielfeld(int b, int l)
         {
-            //für tests bereits bevölkern
-            kolonie = new Zelle[16, 9];
-
-
-            for (int i = 0; i < 16; i++)
+            this.breite = b;
+            this.laenge = l;
+            kolonie = new Zelle[breite+2,laenge+2];
+            for (int i = 0; i < breite+2; i++)
             {
-                for (int j = 0; j < 9; j++)
+                for (int j = 0; j < laenge+2; j++)
                 {
-                    Position Koordinate = Position(i, j);
                     kolonie[i, j] = new Zelle(i, j);
                 }
             }
-            kolonie[2, 2].StarterKolonie();
-            kolonie[6, 6].StarterKolonie();
-        }
 
-        public Spielfeld(int breite, int laenge)
-        {
-            kolonie = new Zelle[breite,laenge];
+            //zufällige vergabe von startfeldern:
+
+
+            //to delete, nur zu testzwecken
+            kolonie[2, 3].StarterKolonie();
+            kolonie[3, 2].StarterKolonie();
+            kolonie[3, 3].StarterKolonie();
         }
     }
 }

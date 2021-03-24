@@ -37,6 +37,7 @@ namespace GameOfLife
         public bool Status
         {
             get { return this.status; }
+            set { this.status = value; }
         }
 
         public bool NextStatus
@@ -45,11 +46,11 @@ namespace GameOfLife
             set { this.nextStatus = value; }
         }
 
-        //setter für status. nur bei initialisierung nutzen
+        //angesprochene Zelle wird aktiviert
         public void StarterKolonie() { this.status = true; }
 
-        //setterfunktion für nextstatus
-        public void Evolve() { this.nextStatus = this.status; }
+        //Generationenübergang für Zelle.Status
+        public void Evolve() { this.Status = this.NextStatus; }
 
         public Zelle(Position p)
         {
@@ -60,6 +61,7 @@ namespace GameOfLife
         public Zelle(int zeile, int spalte)
         {
             this.status = false;
+            this.NextStatus = false;
             this.Koordinate.Z = zeile;
             this.Koordinate.S = spalte;
         }
