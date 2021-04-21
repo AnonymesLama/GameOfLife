@@ -4,14 +4,13 @@
 //     Laufzeitversion: 4.0.30319.42000
 //
 //     Änderungen an dieser Datei können fehlerhaftes Verhalten verursachen und gehen verloren, wenn
-//     der Code neu generiert wird.
+//     der Code erneut generiert wird.
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GameOfLife.Properties
+
+namespace WPF_GameOfLife.Properties
 {
-
-
     /// <summary>
     ///   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
     /// </summary>
@@ -44,7 +43,7 @@ namespace GameOfLife.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GameOfLife.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPF_GameOfLife.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
