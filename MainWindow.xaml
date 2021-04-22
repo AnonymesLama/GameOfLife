@@ -5,24 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_GameOfLife"
 
-        Title="MainWindow" Height="600" Width="960" ResizeMode="CanMinimize">
+        Title="MainWindow" Height="600" Width="960" ResizeMode="CanMinimize" FontSize="16">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="133*"/>
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="cnv_Spielfeld" HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="798" RenderTransformOrigin="3.48,1.52" Margin="123,10,0,0" Grid.Column="1"/>
-        <Button x:Name="btn_Next" Content="Next Generation" HorizontalAlignment="Left" Height="25" Margin="9,30,0,0" VerticalAlignment="Top" Width="125" Click="btn_Next_Click" IsEnabled="False" Grid.ColumnSpan="2"/>
-        <Button x:Name="btn_Start" Content="Start" HorizontalAlignment="Left" Height="25" Margin="9,60,0,0" VerticalAlignment="Top" Width="125" Click="btn_Start_Click" IsEnabled="False" Grid.ColumnSpan="2"/>
-        <Button x:Name="btn_Stop" Content="Stop" HorizontalAlignment="Left" Height="25" Margin="9,90,0,0" VerticalAlignment="Top" Width="125" Click="btn_Stop_Click" IsEnabled="False" Grid.ColumnSpan="2"/>
-        <Button x:Name="btn_Reset" Content="Reset" HorizontalAlignment="Left" Height="25" Margin="9,120,0,0" VerticalAlignment="Top" Width="125" Click="btn_Reset_Click" IsEnabled="False" Grid.ColumnSpan="2"/>
-        <Button x:Name="btn_Random" Content="Random" HorizontalAlignment="Left" Height="25" Margin="9,150,0,0" VerticalAlignment="Top" Width="125" Click="btn_Random_Click" IsEnabled="False" Grid.ColumnSpan="2" />
-        <Button x:Name="btn_Create" Content="Create" HorizontalAlignment="Left" Height="25" Margin="10,265,0,0" VerticalAlignment="Top" Width="125" Click="btn_Create_Click" Grid.ColumnSpan="2"/>
-        <Label x:Name="lbl_Infotext" Content="Infotext" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="125" Height="92" Grid.ColumnSpan="2"/>
-        <Slider x:Name="trb_Delay" HorizontalAlignment="Left" Margin="10,295,0,0" Grid.ColumnSpan="2" Width="20" RenderTransformOrigin="0.955,2.861" ValueChanged="Slider_ValueChanged" VerticalAlignment="Top" Orientation="Vertical" Height="179" Minimum="0.01" Maximum="1"/>
-        <TextBox x:Name="tbx_ZellenHoch" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="15,295,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="20" TextChanged="tbx_ZellenHoch_TextChanged"/>
-        <TextBox x:Name="tbx_ZellenBreit" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="93,295,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.525,2.714" TextChanged="tbx_ZellenBreit_TextChanged"/>
-        <Label Content="Zeilen X Spalten" Grid.Column="1" HorizontalAlignment="Left" Margin="15,315,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.053,0.577" Width="98"/>
-
+        <Canvas x:Name="cnv_Spielfeld" 
+                HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="798" RenderTransformOrigin="3.48,1.52" Margin="123,10,0,0" Grid.Column="1"/>
+        <Button x:Name="btn_Next" 
+                Content="Next Generation" HorizontalAlignment="Left" Height="25" Margin="9,30,0,0" VerticalAlignment="Top" Width="125" Grid.ColumnSpan="2" 
+                Click="btn_Next_Click"  
+                IsEnabled="False"/>
+        <Button x:Name="btn_Start" 
+                Content="Start" HorizontalAlignment="Left" Height="25" Margin="9,60,0,0" VerticalAlignment="Top" Width="125"  Grid.ColumnSpan="2" 
+                Click="btn_Start_Click" 
+                IsEnabled="False"/>
+        <Button x:Name="btn_Stop" 
+                Content="Stop" HorizontalAlignment="Left" Height="25" Margin="9,90,0,0" VerticalAlignment="Top" Width="125" Grid.ColumnSpan="2" 
+                Click="btn_Stop_Click" 
+                IsEnabled="False" />
+        <Button x:Name="btn_Reset" 
+                Content="Reset" HorizontalAlignment="Left" Height="25" Margin="9,120,0,0" VerticalAlignment="Top" Width="125" Grid.ColumnSpan="2"
+                Click="btn_Reset_Click" 
+                IsEnabled="False" />
+        <Button x:Name="btn_Random" 
+                Content="Random" HorizontalAlignment="Left" Height="25" Margin="9,150,0,0" VerticalAlignment="Top" Width="125" Grid.ColumnSpan="2"
+                Click="btn_Random_Click"
+                IsEnabled="False"  />
+        <Button x:Name="btn_Create" 
+                Content="Create" HorizontalAlignment="Left" Height="25" Margin="10,273,0,0" VerticalAlignment="Top" Width="125" Grid.ColumnSpan="2"
+                Click="btn_Create_Click" 
+                IsEnabled="True"/>
+        <Slider x:Name="trb_Delay" 
+                Orientation="Vertical" VerticalAlignment="Top" Height="179" HorizontalAlignment="Left" Margin="10,303,0,0" Grid.ColumnSpan="2" Width="26" RenderTransformOrigin="0.955,2.861" 
+                TickPlacement="BottomRight"
+                Value="0.444"
+                Minimum="0.05" Maximum="0.8" 
+                ValueChanged="Slider_ValueChanged" />
+        <Label x:Name="lbl_Dauer" 
+               Content="{Binding ElementName=trb_Delay, Path=Value}" 
+               HorizontalAlignment="Left" Margin="9,487,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.053,0.577" Width="29" Grid.ColumnSpan="2" Padding="0,5" ScrollViewer.CanContentScroll="True"/>
+        <Label x:Name="lbl_Einheit" 
+               Content="s" 
+               Grid.Column="1" Margin="15,487,884,0" VerticalAlignment="Top" RenderTransformOrigin="1.053,0.577"/>
+        <TextBox x:Name="tbx_ZellenHoch" 
+                 Text="50"
+                 Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="15,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="tbx_ZellenBreit"                  
+                 Text="50"
+                 Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="67,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lbl_Legende"
+               Content="rows  X  cols" 
+               Grid.Column="1" HorizontalAlignment="Left" Margin="15,323,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.053,0.577" Width="98" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="lbl_Infotext" 
+               Content="Infotext" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="125" Height="92" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
