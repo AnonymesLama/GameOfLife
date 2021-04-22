@@ -83,12 +83,11 @@ namespace WPF_GameOfLife
                         {
                             kolonie[i, j].Status = false;
                         }
-
-                    } else if (listeLebendige[i,j] == 3)
+                    } 
+                    else if (listeLebendige[i,j] == 3)
                     {
                         kolonie[i, j].Status = true;
                     }
-
                 }
             } 
 
