@@ -23,7 +23,7 @@ namespace WPF_GameOfLife
     {
         public static int anzahlZellenHoch;
         public static int anzahlZellenBreit;
-        public double generationenDauer = 0.1;
+        public double generationenDauer;
         public Feld [,] zellen;
         public Dictionary<Rectangle, Feld> rectStatusPaar;
         public DispatcherTimer generationenTimer = new DispatcherTimer();
@@ -33,7 +33,7 @@ namespace WPF_GameOfLife
             InitializeComponent();
             generationenTimer.Interval = TimeSpan.FromSeconds(generationenDauer);
             generationenTimer.Tick += GenerationenTimer_Tick;
-            lbl_Infotext.Content = "Welcome to Conways\nGame of Life. \n\nRegeln und Info:\nhttps://w.wiki/3CWR";
+            lbl_Infotext.Content = "Welcome to \nGame of Life! \nRules etc:\nw.wiki/3CWR";
         }
 
         private void GenerationenTimer_Tick(object sender, EventArgs e)
@@ -157,16 +157,7 @@ namespace WPF_GameOfLife
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             generationenDauer = e.NewValue;
-            generationenTimer.Interval = TimeSpan.FromSeconds(generationenDauer);
-            //try
-            //{
-            //    lbl_Dauer.Content = Math.Round(((double)generationenDauer)).ToString();
-            //} catch (NullReferenceException ex)
-            //{
-            //    lbl_Dauer.Content = 0.1;
-            //}
-            String gerundeteGenerationenDauer = ((decimal)generationenDauer).ToString();
-            lbl_Dauer.Content = gerundeteGenerationenDauer;           
+            generationenTimer.Interval = TimeSpan.FromSeconds(generationenDauer);          
         }
     }
 }
