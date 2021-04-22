@@ -70,19 +70,17 @@ namespace WPF_GameOfLife
                         zellen[i, j] = zelle;
                     }
                 }
-                lbl_Infotext.Content = "Das Spiel wurde \nerstellt.";
+                btn_Next.IsEnabled = true;
+                btn_Reset.IsEnabled = true;
+                btn_Start.IsEnabled = true;
+                btn_Stop.IsEnabled = true;
+                btn_Random.IsEnabled = true;
+                lbl_Infotext.Content = "Playing field \nwas created.";
             }
             else
             {
-                lbl_Infotext.Content = "Bitte ganze Zahl \n3-50 eingeben.";
-            }                
-
-            btn_Next.IsEnabled = true;
-            btn_Reset.IsEnabled = true;
-            btn_Start.IsEnabled = true;
-            btn_Stop.IsEnabled = true;
-            btn_Random.IsEnabled = true;
-
+                lbl_Infotext.Content = "Please enter a \nnumber 3-50.";
+            }
         }
 
         private void Zelle_MouseDown(object sender, MouseButtonEventArgs e)
@@ -111,7 +109,7 @@ namespace WPF_GameOfLife
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {
             generationenTimer.Start();
-            lbl_Infotext.Content = "Das Spiel läuft \nautomatisch";
+            lbl_Infotext.Content = "The game is \nrunning \nautomtically.";
             btn_Create.IsEnabled = false;
             btn_Random.IsEnabled = false;
         }
@@ -119,7 +117,7 @@ namespace WPF_GameOfLife
         private void btn_Stop_Click(object sender, RoutedEventArgs e)
         {
             generationenTimer.Stop();
-            lbl_Infotext.Content = "Das Spiel wurde \ngestoppt";
+            lbl_Infotext.Content = "The game was \nstopped.";
             btn_Random.IsEnabled = true;
             btn_Create.IsEnabled = true;
         }
@@ -131,7 +129,7 @@ namespace WPF_GameOfLife
             {
                 zelle.Status = false;
             }
-            lbl_Infotext.Content = "Das Spiel wurde \nzurückgesetzt";
+            lbl_Infotext.Content = "The game was \nreset.";
             btn_Create.IsEnabled = true;
             btn_Random.IsEnabled = true;
             tbx_ZellenBreit.IsEnabled = true;
@@ -143,15 +141,13 @@ namespace WPF_GameOfLife
             Random rand = new Random();
             foreach (Feld zelle in zellen)
             {
-                double live = rand.NextDouble();
-                if (live < 0.5)
-                {
+                if (rand.NextDouble() < 0.5)
                     zelle.Status = true;
-                } else
-                {
+                else
                     zelle.Status = false;
-                }
             }
+
+            lbl_Infotext.Content = "Living colonies\nplaced at\nrandom.";
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
