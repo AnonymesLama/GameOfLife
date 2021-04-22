@@ -20,11 +20,11 @@ namespace WPF_GameOfLife
                 this.shape = value;
                 if (shape.Fill == Brushes.Black)
                 {
-                    this.Status = true;
+                    this.status = true;
                 }
                 else
                 {
-                    this.Status = false;
+                    this.status = false;
                 }
             }
         }
@@ -36,11 +36,11 @@ namespace WPF_GameOfLife
                 status = value;
                 if (status)
                 {
-                    this.Shape.Fill = Brushes.Black;
+                    this.shape.Fill = Brushes.Black;
                 }
                 else
                 {
-                    this.Shape.Fill = Brushes.White;
+                    this.shape.Fill = Brushes.White;
                 }
             } 
         }

@@ -129,7 +129,7 @@ namespace WPF_GameOfLife
             generationenTimer.Stop();
             foreach (Feld zelle in zellen)
             {
-                zelle.Shape.Fill = Brushes.White;
+                zelle.Status = false;
             }
             lbl_Infotext.Content = "Das Spiel wurde \nzurückgesetzt";
             btn_Create.IsEnabled = true;
@@ -158,28 +158,15 @@ namespace WPF_GameOfLife
         {
             generationenDauer = e.NewValue;
             generationenTimer.Interval = TimeSpan.FromSeconds(generationenDauer);
-            String angabe = ((float) generationenDauer).ToString();
-            lbl_Infotext.Content = angabe + "ist die Dauer";            
-        }
-
-        private void tbx_ZellenHoch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            bool isParsable = Int32.TryParse(tbx_ZellenHoch.Text, out int number);
-            if (isParsable && (number < 51 && number > 2))
-                lbl_Infotext.Content = "";
-            else
-                lbl_Infotext.Content = "Bitte ganze Zahl \n3-50 eingeben.";
-
-        }
-
-        private void tbx_ZellenBreit_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            bool isParsable = Int32.TryParse(tbx_ZellenBreit.Text, out int number);
-            if (isParsable && (number < 51 && number > 2))  
-                lbl_Infotext.Content = ""; 
-            else 
-                lbl_Infotext.Content = "Bitte ganze Zahl \n3-50 eingeben.";  
-            
+            //try
+            //{
+            //    lbl_Dauer.Content = Math.Round(((double)generationenDauer)).ToString();
+            //} catch (NullReferenceException ex)
+            //{
+            //    lbl_Dauer.Content = 0.1;
+            //}
+            String gerundeteGenerationenDauer = ((decimal)generationenDauer).ToString();
+            lbl_Dauer.Content = gerundeteGenerationenDauer;           
         }
     }
 }
