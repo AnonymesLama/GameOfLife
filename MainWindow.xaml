@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_GameOfLife"
 
-        Title="MainWindow" Height="600" Width="960" ResizeMode="CanMinimize" FontSize="16">
+        Title="Conway's Game Of Life" Height="600" Width="960" ResizeMode="CanMinimize" FontSize="16">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>

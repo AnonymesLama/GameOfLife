@@ -109,7 +109,7 @@ namespace WPF_GameOfLife
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {
             generationenTimer.Start();
-            lbl_Infotext.Content = "The game is \nrunning \nautomtically.";
+            lbl_Infotext.Content = "The game is \nrunning \nautomatically.";
             btn_Create.IsEnabled = false;
             btn_Random.IsEnabled = false;
         }
