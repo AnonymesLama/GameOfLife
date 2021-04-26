@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_GameOfLife", "WPF_GameOfLife.csproj", "{EB28B111-5EEC-45E5-99EA-FA7CED1B357F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeTests", "..\GameOfLifeTests\GameOfLifeTests.csproj", "{9E0C07AC-335E-4B9E-B4C9-EECF2EA3FD21}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB28B111-5EEC-45E5-99EA-FA7CED1B357F} = {EB28B111-5EEC-45E5-99EA-FA7CED1B357F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{EB28B111-5EEC-45E5-99EA-FA7CED1B357F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB28B111-5EEC-45E5-99EA-FA7CED1B357F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB28B111-5EEC-45E5-99EA-FA7CED1B357F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E0C07AC-335E-4B9E-B4C9-EECF2EA3FD21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E0C07AC-335E-4B9E-B4C9-EECF2EA3FD21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E0C07AC-335E-4B9E-B4C9-EECF2EA3FD21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E0C07AC-335E-4B9E-B4C9-EECF2EA3FD21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
