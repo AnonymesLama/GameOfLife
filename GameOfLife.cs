@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace WPF_GameOfLife
 {
-    class GameOfLife
+    public class GameOfLife
     {        
         public void Evolve(Feld[,] kolonie, int anzahlZellenHoch, int anzahlZellenBreit)
         {
-            int[,] listeLebendige = new int[anzahlZellenHoch, anzahlZellenBreit];
+            int[,] listeLebendige = Calculate_Cells(kolonie, anzahlZellenHoch, anzahlZellenBreit);
+            Set_Status(kolonie, listeLebendige, anzahlZellenHoch, anzahlZellenBreit);
+        }
 
+        public int[,] Calculate_Cells(Feld[,] kolonie, int anzahlZellenHoch, int anzahlZellenBreit)
+        {
+            int[,] zellen = new int[anzahlZellenHoch, anzahlZellenBreit];
             for (int i = 0; i < anzahlZellenHoch; i++)
             {
                 for (int j = 0; j < anzahlZellenBreit; j++)
@@ -40,57 +45,61 @@ namespace WPF_GameOfLife
 
                     if (kolonie[above,left].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                     if (kolonie[below, right].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                     if (kolonie[below, j].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                     if (kolonie[i, left].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                     if (kolonie[below, left].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                     if (kolonie[i, right].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                     if (kolonie[above, right].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                     if (kolonie[above, j].Status)
                     {
-                        listeLebendige[i, j]++;
+                        zellen[i, j]++;
                     }
                 }
             }
+            return zellen;
+        }
 
-            for (int i = 0; i < anzahlZellenHoch; i++)
+        public void Set_Status(Feld[,] kolonie, int[,] zellen, int anzahlZellenHoch, int anzahlZellenBreit)
+        {
+        for (int i = 0; i < anzahlZellenHoch; i++)
             {
                 for (int j = 0; j < anzahlZellenBreit; j++)
                 {
                     if (kolonie[i,j].Status)
                     {
-                        if (listeLebendige[i,j] < 2 || listeLebendige[i, j] > 3)
+                        if (zellen[i,j] < 2 || zellen[i, j] > 3)
                         {
                             kolonie[i, j].Status = false;
                         }
-                    } 
-                    else if (listeLebendige[i,j] == 3)
+
+                    } else if (zellen[i,j] == 3)
                     {
                         kolonie[i, j].Status = true;
                     }
+
                 }
             } 
-
         }
     }
 }
