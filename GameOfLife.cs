@@ -7,42 +7,60 @@ using System.Threading.Tasks;
 namespace WPF_GameOfLife
 {
     public class GameOfLife
-    {        
-        public void Evolve(Feld[,] kolonie, int anzahlZellenHoch, int anzahlZellenBreit)
+    {
+        private int above;
+        private int below;
+        private int left;
+        private int right;
+
+        private int zellenHoch;
+        private int zellenBreit;
+        
+        public GameOfLife(int zellenHoch, int zellenBreit)
         {
-            int[,] listeLebendige = Calculate_Cells(kolonie, anzahlZellenHoch, anzahlZellenBreit);
-            Set_Status(kolonie, listeLebendige, anzahlZellenHoch, anzahlZellenBreit);
+            this.zellenHoch = zellenHoch;
+            this.zellenBreit = zellenBreit;
+        }
+        
+        public int getAbove()
+        {
+            return this.above;
         }
 
-        public int[,] Calculate_Cells(Feld[,] kolonie, int anzahlZellenHoch, int anzahlZellenBreit)
+        public int getBelow()
         {
-            int[,] zellen = new int[anzahlZellenHoch, anzahlZellenBreit];
-            for (int i = 0; i < anzahlZellenHoch; i++)
+            return this.below;
+        }
+
+        public int getLeft()
+        {
+            return this.left;
+        }
+
+        public int getRight()
+        {
+            return this.right;
+        }
+        public void Evolve(Feld[,] kolonie)
+        {
+            int[,] listeLebendige = Calculate_Cells(kolonie);
+            Set_Status(kolonie, listeLebendige);
+        }
+
+        public int[,] Calculate_Cells(Feld[,] kolonie)
+        {
+            int[,] zellen = new int[zellenHoch, zellenBreit];
+            for (int i = 0; i < zellenHoch; i++)
             {
-                for (int j = 0; j < anzahlZellenBreit; j++)
+                for (int j = 0; j < zellenBreit; j++)
                 {
-                    int above = i - 1;
-                    int below = i + 1;
-                    int left = j - 1;
-                    int right = j + 1;
+                    this.above = i - 1;
+                    this.below = i + 1;
+                    this.left = j - 1;
+                    this.right = j + 1;
 
-                    if (above < 0)
-                    {
-                        above = anzahlZellenHoch - 1;
-                    }
-                    if (below >= anzahlZellenHoch)
-                    {
-                        below = 0;
-                    }
-                    if (left < 0)
-                    {
-                        left = anzahlZellenBreit - 1;
-                    }
-                    if (right >= anzahlZellenBreit)
-                    {
-                        right = 0;
-                    }
-
+                    check();
+                    
                     if (kolonie[above,left].Status)
                     {
                         zellen[i, j]++;
@@ -80,11 +98,11 @@ namespace WPF_GameOfLife
             return zellen;
         }
 
-        public void Set_Status(Feld[,] kolonie, int[,] zellen, int anzahlZellenHoch, int anzahlZellenBreit)
+        public void Set_Status(Feld[,] kolonie, int[,] zellen)
         {
-        for (int i = 0; i < anzahlZellenHoch; i++)
+        for (int i = 0; i < zellenHoch; i++)
             {
-                for (int j = 0; j < anzahlZellenBreit; j++)
+                for (int j = 0; j < zellenBreit; j++)
                 {
                     if (kolonie[i,j].Status)
                     {
@@ -100,6 +118,26 @@ namespace WPF_GameOfLife
 
                 }
             } 
+        }
+
+        public void check()
+        {
+            if (this.above < 0)
+            {
+                this.above = zellenHoch - 1;
+            }
+            if (this.below >= zellenHoch)
+            {
+                this.below = 0;
+            }
+            if (this.left < 0)
+            {
+                this.left = zellenBreit - 1;
+            }
+            if (this.right >= zellenBreit)
+            {
+                this.right = 0;
+            }
         }
     }
 }

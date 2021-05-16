@@ -102,8 +102,8 @@ namespace WPF_GameOfLife
         private void btn_Next_Click(object sender, RoutedEventArgs e)
         {
             btn_Create.IsEnabled = false;
-            GameOfLife generation = new GameOfLife();
-            generation.Evolve(zellen, anzahlZellenHoch, anzahlZellenBreit);
+            GameOfLife generation = new GameOfLife(anzahlZellenHoch, anzahlZellenBreit);
+            generation.Evolve(zellen);
         }
 
         private void btn_Start_Click(object sender, RoutedEventArgs e)
