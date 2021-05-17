@@ -12,6 +12,7 @@ namespace WPF_GameOfLife
     {
         private Rectangle shape;
         private bool status;
+
         public Rectangle Shape
         {
             get { return this.shape; }
@@ -24,7 +25,6 @@ namespace WPF_GameOfLife
                     this.status = false;
             }
         }
-
         public bool Status {
             get { return this.status; }
             set

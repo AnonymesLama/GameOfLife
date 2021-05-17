@@ -14,33 +14,77 @@ namespace WPF_GameOfLife
         private int right;
 
         private int zellenHoch;
-        private int zellenBreit;
-        
-        public GameOfLife(int zellenHoch, int zellenBreit)
+        private int zellenBreit;       
+
+
+        public int Above
         {
-            this.zellenHoch = zellenHoch;
-            this.zellenBreit = zellenBreit;
+            get
+            {
+                return this.above;
+            }
+            set
+            {
+                this.above = value - 1;
+                check();
+            }
         }
-        
-        public int getAbove()
+        public int Below
         {
-            return this.above;
+            get
+            {
+                return this.below;
+            }
+            set
+            {
+                this.below = value + 1;
+                check();
+            }
+        }
+        public int Left
+        {
+            get
+            {
+                return this.left;
+            }
+            set
+            {
+                this.left = value - 1;
+                check();
+            }
+        }
+        public int Right
+        {
+            get
+            {
+                return this.right;
+            }
+            set
+            {
+                this.right = value + 1;
+                check();
+            }
+        }
+        public void check()
+        {
+            if (this.above < 0)
+            {
+                this.above = zellenHoch - 1;
+            }
+            if (this.below >= zellenHoch)
+            {
+                this.below = 0;
+            }
+            if (this.left < 0)
+            {
+                this.left = zellenBreit - 1;
+            }
+            if (this.right >= zellenBreit)
+            {
+                this.right = 0;
+            }
         }
 
-        public int getBelow()
-        {
-            return this.below;
-        }
-
-        public int getLeft()
-        {
-            return this.left;
-        }
-
-        public int getRight()
-        {
-            return this.right;
-        }
         public void Evolve(Feld[,] kolonie)
         {
             int[,] listeLebendige = Calculate_Cells(kolonie);
@@ -54,42 +98,40 @@ namespace WPF_GameOfLife
             {
                 for (int j = 0; j < zellenBreit; j++)
                 {
-                    this.above = i - 1;
-                    this.below = i + 1;
-                    this.left = j - 1;
-                    this.right = j + 1;
-
-                    check();
+                    Above = i;
+                    Below = i;
+                    Left = j;
+                    Right = j;
                     
-                    if (kolonie[above,left].Status)
+                    if (kolonie[Above, Left].Status)
                     {
                         zellen[i, j]++;
                     }
-                    if (kolonie[below, right].Status)
+                    if (kolonie[Below, Right].Status)
                     {
                         zellen[i, j]++;
                     }
-                    if (kolonie[below, j].Status)
+                    if (kolonie[Below, j].Status)
                     {
                         zellen[i, j]++;
                     }
-                    if (kolonie[i, left].Status)
+                    if (kolonie[i, Left].Status)
                     {
                         zellen[i, j]++;
                     }
-                    if (kolonie[below, left].Status)
+                    if (kolonie[Below, Left].Status)
                     {
                         zellen[i, j]++;
                     }
-                    if (kolonie[i, right].Status)
+                    if (kolonie[i, Right].Status)
                     {
                         zellen[i, j]++;
                     }
-                    if (kolonie[above, right].Status)
+                    if (kolonie[Above, Right].Status)
                     {
                         zellen[i, j]++;
                     }
-                    if (kolonie[above, j].Status)
+                    if (kolonie[Above, j].Status)
                     {
                         zellen[i, j]++;
                     }
@@ -120,24 +162,10 @@ namespace WPF_GameOfLife
             } 
         }
 
-        public void check()
+        public GameOfLife(int zellenHoch, int zellenBreit)
         {
-            if (this.above < 0)
-            {
-                this.above = zellenHoch - 1;
-            }
-            if (this.below >= zellenHoch)
-            {
-                this.below = 0;
-            }
-            if (this.left < 0)
-            {
-                this.left = zellenBreit - 1;
-            }
-            if (this.right >= zellenBreit)
-            {
-                this.right = 0;
-            }
+            this.zellenHoch = zellenHoch;
+            this.zellenBreit = zellenBreit;
         }
     }
 }
