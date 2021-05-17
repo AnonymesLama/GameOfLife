@@ -65,7 +65,7 @@ namespace WPF_GameOfLife
                 check();
             }
         }
-        public void check()
+        private void check()
         {
             if (this.above < 0)
             {
@@ -91,7 +91,7 @@ namespace WPF_GameOfLife
             Set_Status(kolonie, listeLebendige);
         }
 
-        public int[,] Calculate_Cells(Feld[,] kolonie)
+        private int[,] Calculate_Cells(Feld[,] kolonie)
         {
             int[,] zellen = new int[zellenHoch, zellenBreit];
             for (int i = 0; i < zellenHoch; i++)
@@ -140,7 +140,7 @@ namespace WPF_GameOfLife
             return zellen;
         }
 
-        public void Set_Status(Feld[,] kolonie, int[,] zellen)
+        private void Set_Status(Feld[,] kolonie, int[,] zellen)
         {
         for (int i = 0; i < zellenHoch; i++)
             {
