@@ -26,7 +26,7 @@ namespace WPF_GameOfLife
             set
             {
                 this.above = value - 1;
-                check();
+                Check();
             }
         }
         public int Below
@@ -38,7 +38,7 @@ namespace WPF_GameOfLife
             set
             {
                 this.below = value + 1;
-                check();
+                Check();
             }
         }
         public int Left
@@ -50,7 +50,7 @@ namespace WPF_GameOfLife
             set
             {
                 this.left = value - 1;
-                check();
+                Check();
             }
         }
         public int Right
@@ -62,10 +62,10 @@ namespace WPF_GameOfLife
             set
             {
                 this.right = value + 1;
-                check();
+                Check();
             }
         }
-        private void check()
+        private void Check()
         {
             if (this.above < 0)
             {
